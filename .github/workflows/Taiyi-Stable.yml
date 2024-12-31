@@ -1,4 +1,4 @@
-name: Taiyi-Stable(B)
+name: Taiyi-Stable
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ on:
   #   - cron: 0 20 * * *
 
 env:
-  REPO_URL: https://github.com/LiBwrt/openwrt-6.x.git
+  REPO_URL: https://github.com/laipeng668/immortalwrt.git
   REPO_BRANCH: openwrt-24.10
   CONFIG_FILE: configs/Taiyi.config
   DIY_SCRIPT: scripts/Roc-script.sh
