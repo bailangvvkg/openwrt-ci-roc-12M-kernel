@@ -6,35 +6,23 @@ on:
     - cron: 0 20 * * 5  # 北京时间星期六凌晨4点，定时触发
 
 jobs:
-    Arthur-Athena-6.12:
+    Arthur-Athena-6-12:
      uses: ./.github/workflows/Arthur&Athena-6.12.yml
 
-    Arthur-Athena-Master-B:
-     uses: ./.github/workflows/Arthur&Athena-Master(B).yml
+    Arthur-Athena-Master:
+     uses: ./.github/workflows/Arthur&Athena-Master.yml
 
-    Arthur-Athena-Master-V:
-     uses: ./.github/workflows/Arthur&Athena-Master(V).yml
-
-    Arthur-Athena-Stable-B:
-     uses: ./.github/workflows/Arthur&Athena-Stable(B).yml
-
-    Arthur-Athena-Stable-V:
-     uses: ./.github/workflows/Arthur&Athena-Stable(V).yml
+    Arthur-Athena-Stable:
+     uses: ./.github/workflows/Arthur&Athena-Stable.yml
  
-    Taiyi-Master-B:
-     uses: ./.github/workflows/Taiyi-Master(B).yml
+    Taiyi-6-12:
+     uses: ./.github/workflows/Taiyi-6.12.yml
 
-    Taiyi-Master-V:
-     uses: ./.github/workflows/Taiyi-Master(V).yml
-
-    Taiyi-Stable-B:
-     uses: ./.github/workflows/Taiyi-Stable(B).yml
+    Taiyi-Master:
+     uses: ./.github/workflows/Taiyi-Master.yml
 
     Taiyi-Stable-V:
-     uses: ./.github/workflows/Taiyi-Stable(V).yml
-
-    All-Base:
-     uses: ./.github/workflows/All-Base.yml
+     uses: ./.github/workflows/Taiyi-Stable.yml
 
     All-Clean:
      uses: ./.github/workflows/All-Clean.yml
