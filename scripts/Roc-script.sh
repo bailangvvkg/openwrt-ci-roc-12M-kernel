@@ -39,6 +39,9 @@ sed -i "/^define Device\/jdcloud_re-cs-02/,/^endef/ { /KERNEL_SIZE := 6144k/s//K
 #修改jdc re-cs-07 (太乙) 的内核大小为12M
 sed -i "/^define Device\/jdcloud_re-cs-07/,/^endef/ { /KERNEL_SIZE := 6144k/s//KERNEL_SIZE := 12288k/ }" target/linux/qualcommax/image/ipq60xx.mk
 
+#coremark修复
+sed -i 's/mkdir \$(PKG_BUILD_DIR)\/\$(ARCH)/mkdir -p \$(PKG_BUILD_DIR)\/\$(ARCH)/g' ../feeds/packages/utils/coremark/Makefile
+
 # 想要剔除的
 echo "CONFIG_PACKAGE_htop=n" >> ./.config
 echo "CONFIG_PACKAGE_iperf3=n" >> ./.config
@@ -47,7 +50,7 @@ echo "CONFIG_PACKAGE_luci-app-tailscale=n" >> ./.config
 echo "CONFIG_PACKAGE_luci-app-advancedplus=n" >> ./.config
 echo "CONFIG_PACKAGE_luci-theme-kucat=n" >> ./.config
 # 一定要禁止编译这个coremark 不然会导致编译失败
-echo "CONFIG_PACKAGE_coremark=n" >> ./.config
+# echo "CONFIG_PACKAGE_coremark=n" >> ./.config
 
 # 可以让FinalShell查看文件列表并且ssh连上不会自动断开
 echo "CONFIG_PACKAGE_openssh-sftp-server=y" >> ./.config
