@@ -112,6 +112,11 @@ git clone https://github.com/sirpdboy/luci-app-lucky.git package/lucky
 git clone --depth=1 https://github.com/NONGFAH/luci-app-athena-led package/luci-app-athena-led
 chmod +x package/luci-app-athena-led/root/etc/init.d/athena_led
 chmod +x package/luci-app-athena-led/root/usr/sbin/athena-led
+# QiuSimons luci-app-daed
+rm -rf ../feeds/luci/applications/luci-app-{dae*}
+rm -rf ../feeds/packages/net/{dae*}
+git clone https://github.com/QiuSimons/luci-app-daed package/dae
+mkdir -p Package/libcron && wget -O Package/libcron/Makefile https://raw.githubusercontent.com/immortalwrt/packages/refs/heads/master/libs/libcron/Makefile
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
