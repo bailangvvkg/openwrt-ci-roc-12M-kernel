@@ -40,7 +40,7 @@ sed -i "/^define Device\/jdcloud_re-cs-02/,/^endef/ { /KERNEL_SIZE := 6144k/s//K
 sed -i "/^define Device\/jdcloud_re-cs-07/,/^endef/ { /KERNEL_SIZE := 6144k/s//KERNEL_SIZE := 12288k/ }" target/linux/qualcommax/image/ipq60xx.mk
 
 # 想要剔除的
-# echo "CONFIG_PACKAGE_htop=n" >> ./.config
+echo "CONFIG_PACKAGE_htop=n" >> ./.config
 echo "CONFIG_PACKAGE_iperf3=n" >> ./.config
 echo "CONFIG_PACKAGE_luci-app-wolplus=n" >> ./.config
 echo "CONFIG_PACKAGE_luci-app-tailscale=n" >> ./.config
@@ -62,15 +62,15 @@ echo "CONFIG_PACKAGE_luci-app-lucky=y" >> ./.config
 # 网络通信工具
 echo "CONFIG_PACKAGE_curl=y" >> ./.config
 # BBR 拥塞控制算法(终端侧)
-# echo "CONFIG_PACKAGE_kmod-tcp-bbr=y" >> ./.config
-# echo "CONFIG_DEFAULT_tcp_bbr=y" >> ./.config
+echo "CONFIG_PACKAGE_kmod-tcp-bbr=y" >> ./.config
+echo "CONFIG_DEFAULT_tcp_bbr=y" >> ./.config
 # 磁盘管理
 echo "CONFIG_PACKAGE_luci-app-diskman=y" >> ./.config
 # 其他调整
 # 大鹅
 echo "CONFIG_PACKAGE_luci-app-daed=y" >> ./.config
 # 大鹅-next
-# echo "CONFIG_PACKAGE_luci-app-daed-next=y" >> ./.config
+echo "CONFIG_PACKAGE_luci-app-daed-next=y" >> ./.config
 # 连上ssh不会断开并且显示文件管理
 echo "CONFIG_PACKAGE_openssh-sftp-server"=y
 # docker只能集成
@@ -87,14 +87,18 @@ echo "CONFIG_PACKAGE_v2ray-geosite=y" >> ./.config
 # NSS的sqm
 echo "CONFIG_PACKAGE_luci-app-sqm=y" >> ./.config
 echo "CONFIG_PACKAGE_sqm-scripts-nss=y" >> ./.config
+# NSS MASH
+echo "CONFIG_ATH11K_NSS_MESH=y" >> ./.config
+# 不知道什么 加上去
+echo "CONFIG_PACKAGE_MAC80211_NSS_REDIRECT=y" >> ./.config
 # istore 编译报错
 # echo "CONFIG_PACKAGE_luci-app-istorex=y" >> ./.config
 # QuickStart
 # echo "CONFIG_PACKAGE_luci-app-quickstart=y" >> ./.config
 # filebrowser-go
-# echo "CONFIG_PACKAGE_luci-app-filebrowser-go=y" >> ./.config
+echo "CONFIG_PACKAGE_luci-app-filebrowser-go=y" >> ./.config
 # 图形化web UI luci-app-uhttpd	
-# echo "CONFIG_PACKAGE_luci-app-uhttpd=y" >> ./.config
+echo "CONFIG_PACKAGE_luci-app-uhttpd=y" >> ./.config
 
 # Alist & AdGuardHome & WolPlus & AriaNg & 集客无线AC控制器 & Lucky & 雅典娜LED控制 & MosDNS
 git clone --depth=1 https://github.com/sbwml/luci-app-alist package/luci-app-alist
@@ -102,7 +106,9 @@ git_sparse_clone main https://github.com/kenzok8/small-package adguardhome luci-
 git_sparse_clone main https://github.com/VIKINGYFY/packages luci-app-wolplus
 git_sparse_clone master https://github.com/immortalwrt/packages net/ariang
 git clone --depth=1 https://github.com/lwb1978/openwrt-gecoosac package/openwrt-gecoosac
-git clone --depth=1 https://github.com/gdy666/luci-app-lucky package/luci-app-lucky
+# git clone --depth=1 https://github.com/gdy666/luci-app-lucky package/luci-app-lucky
+# 拉取Lucky最新版的源码
+git clone https://github.com/sirpdboy/luci-app-lucky.git package/lucky
 git clone --depth=1 https://github.com/NONGFAH/luci-app-athena-led package/luci-app-athena-led
 chmod +x package/luci-app-athena-led/root/etc/init.d/athena_led
 chmod +x package/luci-app-athena-led/root/usr/sbin/athena-led
