@@ -5,6 +5,9 @@ on:
   workflow_call:
   # schedule:
   #   - cron: 0 20 * * *
+  #自动编译：每天早上6点
+  schedule:
+    - cron: 0 22 * * *
 
 env:
   REPO_URL: https://github.com/VIKINGYFY/immortalwrt.git
