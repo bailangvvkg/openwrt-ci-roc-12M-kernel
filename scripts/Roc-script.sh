@@ -120,6 +120,8 @@ rm -rf ../feeds/luci/applications/luci-app-{dae*}
 rm -rf ../feeds/packages/net/{dae*}
 git clone https://github.com/QiuSimons/luci-app-daed package/dae
 mkdir -p Package/libcron && wget -O Package/libcron/Makefile https://raw.githubusercontent.com/immortalwrt/packages/refs/heads/master/libs/libcron/Makefile
+# luci-app-daed-next
+git clone https://github.com/sbwml/luci-app-daed-next package/daed-next
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
