@@ -30,6 +30,23 @@ echo "CONFIG_KERNEL_DEBUG_INFO_BTF=y" >> ./.config
 echo "# CONFIG_KERNEL_DEBUG_INFO_REDUCED is not set" >> ./.config
 echo "CONFIG_KERNEL_XDP_SOCKETS=y" >> ./.config
 
+echo "CONFIG_BPF=y" >> ./.config
+echo "CONFIG_BPF_SYSCALL=y" >> ./.config
+echo "CONFIG_BPF_JIT=y" >> ./.config
+echo "CONFIG_CGROUPS=y" >> ./.config
+echo "CONFIG_KPROBES=y" >> ./.config
+echo "CONFIG_NET_INGRESS=y" >> ./.config
+echo "CONFIG_NET_EGRESS=y" >> ./.config
+echo "CONFIG_NET_SCH_INGRESS=m" >> ./.config
+echo "CONFIG_NET_CLS_BPF=m" >> ./.config
+echo "CONFIG_NET_CLS_ACT=y" >> ./.config
+echo "CONFIG_BPF_STREAM_PARSER=y" >> ./.config
+echo "CONFIG_DEBUG_INFO=y" >> ./.config
+echo "# CONFIG_DEBUG_INFO_REDUCED is not set" >> ./.config
+echo "CONFIG_DEBUG_INFO_BTF=y" >> ./.config
+echo "CONFIG_KPROBE_EVENTS=y" >> ./.config
+echo "CONFIG_BPF_EVENTS=y" >> ./.config
+
 #修改jdc re-ss-01 (亚瑟) 的内核大小为12M
 sed -i "/^define Device\/jdcloud_re-ss-01/,/^endef/ { /KERNEL_SIZE := 6144k/s//KERNEL_SIZE := 12288k/ }" target/linux/qualcommax/image/ipq60xx.mk
 
