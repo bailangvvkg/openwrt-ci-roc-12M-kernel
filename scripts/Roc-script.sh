@@ -45,7 +45,7 @@ echo "CONFIG_DEBUG_INFO=y" >> ./target/linux/qualcommax/config-6.6
 echo "# CONFIG_DEBUG_INFO_REDUCED is not set" >> ./target/linux/qualcommax/config-6.6
 echo "CONFIG_DEBUG_INFO_BTF=y" >> ./target/linux/qualcommax/config-6.6
 echo "CONFIG_KPROBE_EVENTS=y" >> ./target/linux/qualcommax/config-6.6
-echo "CONFIG_BPF_EVENTS=y" >> ./.config
+echo "CONFIG_BPF_EVENTS=y" >> ./target/linux/qualcommax/config-6.6
 
 #修改jdc re-ss-01 (亚瑟) 的内核大小为12M
 sed -i "/^define Device\/jdcloud_re-ss-01/,/^endef/ { /KERNEL_SIZE := 6144k/s//KERNEL_SIZE := 12288k/ }" target/linux/qualcommax/image/ipq60xx.mk
