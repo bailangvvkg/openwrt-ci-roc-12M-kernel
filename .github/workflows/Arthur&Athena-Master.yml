@@ -18,7 +18,8 @@ env:
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: Arthur&Athena-Master
+  # FIRMWARE_TAG: Arthur&Athena-Master
+  FIRMWARE_TAG: R${{ env.FILE_DATE }}-${{ github.run_number }}
   TZ: Asia/Shanghai
 
 jobs:
@@ -188,7 +189,8 @@ jobs:
       uses: ncipollo/release-action@v1
       with:
         name: R${{ env.DATE }} for ${{ env.FIRMWARE_TAG }}
-        allowUpdates: true
+        # allowUpdates: true
+        allowUpdates: false
         tag: ${{ env.FIRMWARE_TAG }}
         token: ${{ secrets.GITHUB_TOKEN }}
         artifacts: ${{ env.FIRMWARE_PATH }}/*
