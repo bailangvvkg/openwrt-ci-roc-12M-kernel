@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
   workflow_call:
   #自动清理：每天早上5点
-  schedule:
-    - cron: 0 21 * * *
+  # schedule:
+  #   - cron: 0 21 * * *
 
 jobs:
   Cleaning:
