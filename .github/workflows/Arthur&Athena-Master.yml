@@ -19,7 +19,7 @@ env:
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
   # FIRMWARE_TAG: Arthur&Athena-Master
-  FIRMWARE_TAG: R${{ env.FILE_DATE }}-${{ github.run_number }}
+  FIRMWARE_TAG: R$(date +"%Y.%m.%d")-Arthur&Athena-Master
   TZ: Asia/Shanghai
 
 jobs:
