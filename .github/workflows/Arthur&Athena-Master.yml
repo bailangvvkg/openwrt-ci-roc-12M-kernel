@@ -19,7 +19,6 @@ env:
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
   # FIRMWARE_TAG: Arthur&Athena-Master
-  FIRMWARE_TAG: R$(date +"%Y.%m.%d")-Arthur&Athena-Master
   TZ: Asia/Shanghai
 
 jobs:
@@ -154,6 +153,9 @@ jobs:
         echo "status=success" >> $GITHUB_OUTPUT
         echo "DATE=$(date +"%Y-%m-%d %H:%M:%S")" >> $GITHUB_ENV
         echo "FILE_DATE=$(date +"%Y.%m.%d")" >> $GITHUB_ENV
+        # FIRMWARE_TAG: R$(date +"%Y.%m.%d")-Arthur&Athena-Master
+        TAG_NAME="R${FILE_DATE}-${GITHUB_RUN_NUMBER}-Arthur&Athena-Master"
+        echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
 
     - name: Check Space Usage(检查空间使用情况)
       if: (!cancelled())
