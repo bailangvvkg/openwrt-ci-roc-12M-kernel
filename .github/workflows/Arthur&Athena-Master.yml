@@ -155,10 +155,10 @@ jobs:
         echo "FILE_DATE=$(date +"%Y.%m.%d")" >> $GITHUB_ENV
         # FIRMWARE_TAG: R$(date +"%Y.%m.%d")-Arthur&Athena-Master
         # TAG_NAME="R${FILE_DATE}-Arthur&Athena-Master"
-        TAG_NAME="R$(date +"%Y.%m.%d")-Arthur&Athena-Master"
+        # TAG_NAME="R$(date +"%Y.%m.%d-%H%M%S")-Arthur-Athena-Master"
         # TAG_NAME="R${FILE_DATE}-v${GITHUB_RUN_NUMBER}-ArthurAthenaMaster"
         # echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
-        echo "FIRMWARE_TAG=$TAG_NAME" >> $GITHUB_ENV
+        echo "FIRMWARE_TAG="R$(date +"%Y.%m.%d-%H%M%S")-Arthur-Athena-Master"" >> $GITHUB_ENV
 
     - name: Check Space Usage(检查空间使用情况)
       if: (!cancelled())
