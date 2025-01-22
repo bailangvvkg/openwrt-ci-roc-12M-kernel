@@ -114,13 +114,15 @@ echo "CONFIG_ATH11K_NSS_MESH=y" >> ./.config
 # 不知道什么 加上去
 echo "CONFIG_PACKAGE_MAC80211_NSS_REDIRECT=y" >> ./.config
 # istore 编译报错
-# echo "CONFIG_PACKAGE_luci-app-istorex=y" >> ./.config
+echo "CONFIG_PACKAGE_luci-app-istorex=y" >> ./.config
 # QuickStart
 # echo "CONFIG_PACKAGE_luci-app-quickstart=y" >> ./.config
 # filebrowser-go
 echo "CONFIG_PACKAGE_luci-app-filebrowser-go=y" >> ./.config
 # 图形化web UI luci-app-uhttpd	
 echo "CONFIG_PACKAGE_luci-app-uhttpd=y" >> ./.config
+# 多播
+echo "CONFIG_PACKAGE_luci-app-mwan3=y" >> ./.config
 
 # Alist & AdGuardHome & WolPlus & AriaNg & 集客无线AC控制器 & Lucky & 雅典娜LED控制 & MosDNS
 git clone --depth=1 https://github.com/sbwml/luci-app-alist package/luci-app-alist
@@ -141,6 +143,9 @@ git clone https://github.com/QiuSimons/luci-app-daed package/dae
 mkdir -p Package/libcron && wget -O Package/libcron/Makefile https://raw.githubusercontent.com/immortalwrt/packages/refs/heads/master/libs/libcron/Makefile
 # luci-app-daed-next
 git clone https://github.com/sbwml/luci-app-daed-next package/daed-next
+
+# 添加源
+echo "src-git small8 https://github.com/kenzok8/small-package" >>"feeds.conf.default"
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
