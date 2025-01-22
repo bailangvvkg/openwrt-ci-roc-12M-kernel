@@ -122,7 +122,7 @@ echo "CONFIG_PACKAGE_luci-app-filebrowser-go=y" >> ./.config
 # 图形化web UI luci-app-uhttpd	
 echo "CONFIG_PACKAGE_luci-app-uhttpd=y" >> ./.config
 # 多播
-echo "CONFIG_PACKAGE_luci-app-mwan3=y" >> ./.config
+echo "CONFIG_PACKAGE_luci-app-syncdial=y" >> ./.config
 
 # Alist & AdGuardHome & WolPlus & AriaNg & 集客无线AC控制器 & Lucky & 雅典娜LED控制 & MosDNS
 git clone --depth=1 https://github.com/sbwml/luci-app-alist package/luci-app-alist
