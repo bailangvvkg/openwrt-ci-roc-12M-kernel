@@ -122,7 +122,7 @@ echo "CONFIG_PACKAGE_luci-app-filebrowser-go=y" >> ./.config
 # 图形化web UI luci-app-uhttpd	
 echo "CONFIG_PACKAGE_luci-app-uhttpd=y" >> ./.config
 # 多播
-echo "CONFIG_PACKAGE_luci-app-syncdial=y" >> ./.config
+# echo "CONFIG_PACKAGE_luci-app-syncdial=y" >> ./.config
 # MosDNS
 echo "CONFIG_PACKAGE_luci-app-mosdns=y" >> ./.config
 
