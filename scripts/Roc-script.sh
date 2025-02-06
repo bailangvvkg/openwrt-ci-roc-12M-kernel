@@ -100,7 +100,7 @@ echo "CONFIG_PACKAGE_luci-app-dockerman=y" >> ./.config
 # qBittorrent
 echo "CONFIG_PACKAGE_luci-app-qbittorrent=y" >> ./.config
 # 添加Homebox内网测速
-# echo "CONFIG_PACKAGE_luci-app-homebox=y" >> ./.config
+echo "CONFIG_PACKAGE_luci-app-homebox=y" >> ./.config
 # V2rayA
 echo "CONFIG_PACKAGE_luci-app-v2raya=y" >> ./.config
 echo "CONFIG_PACKAGE_v2ray-core=y" >> ./.config
@@ -135,6 +135,7 @@ git_sparse_clone main https://github.com/VIKINGYFY/packages luci-app-wolplus
 git_sparse_clone master https://github.com/immortalwrt/packages net/ariang
 git clone --depth=1 https://github.com/lwb1978/openwrt-gecoosac package/openwrt-gecoosac
 # git clone --depth=1 https://github.com/gdy666/luci-app-lucky package/luci-app-lucky
+git cline --depth=1 https://github.com/selfcan/luci-app-homebox
 # 拉取Lucky最新版的源码
 git clone https://github.com/sirpdboy/luci-app-lucky.git package/lucky
 git clone --depth=1 https://github.com/NONGFAH/luci-app-athena-led package/luci-app-athena-led
