@@ -2,6 +2,9 @@
 sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
 sed -i "s/hostname='.*'/hostname='Roc'/g" package/base-files/files/bin/config_generate
 
+#修复dropbear
+sed -i "s/Interface/DirectInterface/" ./package/network/services/dropbear/files/dropbear.config
+
 # 移除要替换的包
 rm -rf feeds/packages/net/alist
 rm -rf feeds/luci/applications/luci-app-alist
