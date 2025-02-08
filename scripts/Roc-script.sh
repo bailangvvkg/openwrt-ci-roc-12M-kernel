@@ -131,7 +131,7 @@ echo "CONFIG_PACKAGE_luci-app-natter2=y" >> ./.config
 
 # Alist & AdGuardHome & WolPlus & AriaNg & 集客无线AC控制器 & Lucky & 雅典娜LED控制 & MosDNS
 git clone --depth=1 https://github.com/sbwml/luci-app-alist package/luci-app-alist
-git_sparse_clone main https://github.com/kenzok8/small-package adguardhome luci-app-adguardhome v2dat mosdns luci-app-mosdns luci-app-istorex istoreenhance luci-app-istoredup luci-app-istoreenhance luci-app-istorego luci-app-istorepanel luci-app-natter2
+git_sparse_clone main https://github.com/kenzok8/small-package adguardhome luci-app-adguardhome v2dat mosdns luci-app-mosdns homebox luci-app-homebox luci-app-istorex istoreenhance luci-app-istoredup luci-app-istoreenhance luci-app-istorego luci-app-istorepanel luci-app-natter2
 git_sparse_clone main https://github.com/VIKINGYFY/packages luci-app-wolplus
 git_sparse_clone master https://github.com/immortalwrt/packages net/ariang
 git clone --depth=1 https://github.com/lwb1978/openwrt-gecoosac package/openwrt-gecoosac
