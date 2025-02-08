@@ -139,7 +139,7 @@ git_sparse_clone main https://github.com/VIKINGYFY/packages luci-app-wolplus
 git_sparse_clone master https://github.com/immortalwrt/packages net/ariang
 git clone --depth=1 https://github.com/lwb1978/openwrt-gecoosac package/openwrt-gecoosac
 # git clone --depth=1 https://github.com/gdy666/luci-app-lucky package/luci-app-lucky
-git cline --depth=1 https://github.com/selfcan/luci-app-homebox
+# git cline --depth=1 https://github.com/selfcan/luci-app-homebox
 # 拉取Lucky最新版的源码
 git clone https://github.com/sirpdboy/luci-app-lucky.git package/lucky
 git clone --depth=1 https://github.com/NONGFAH/luci-app-athena-led package/luci-app-athena-led
