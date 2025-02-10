@@ -160,7 +160,8 @@ jobs:
         cd $OPENWRT_PATH/bin/targets/*/*
         cat sha256sums
         cp $OPENWRT_PATH/.config build.config
-        mv -f $OPENWRT_PATH/bin/packages/*/*/*.apk packages
+        # mv -f $OPENWRT_PATH/bin/packages/*/*/*.apk packages
+        for file in $OPENWRT_PATH/bin/packages/*/*/*; do [[ -f "$file" ]] && [[ "$file" == *.apk ]] && mv -f "$file" packages/apk/ || [[ "$file" == *.ipk ]] && mv -f "$file" packages/ipk/; done
         tar -zcf Packages.tar.gz packages
         rm -rf packages feeds.buildinfo version.buildinfo
         echo "FIRMWARE_PATH=$PWD" >> $GITHUB_ENV
