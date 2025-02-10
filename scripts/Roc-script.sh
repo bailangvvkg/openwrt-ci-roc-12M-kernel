@@ -131,6 +131,8 @@ echo "CONFIG_PACKAGE_luci-app-uhttpd=y" >> ./.config
 echo "CONFIG_PACKAGE_luci-app-mosdns=y" >> ./.config
 # Natter2
 echo "CONFIG_PACKAGE_luci-app-natter2=y" >> ./.config
+# 文件管理器
+echo "CONFIG_PACKAGE_luci-app-filemanager=y" >> ./.config
 
 # Alist & AdGuardHome & WolPlus & AriaNg & 集客无线AC控制器 & Lucky & 雅典娜LED控制 & MosDNS
 git clone --depth=1 https://github.com/sbwml/luci-app-alist package/luci-app-alist
