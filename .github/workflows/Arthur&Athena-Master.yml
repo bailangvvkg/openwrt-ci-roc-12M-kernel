@@ -3,11 +3,8 @@ name: Arthur&Athena-Master
 on:
   workflow_dispatch:
   workflow_call:
-  # schedule:
-  #   - cron: 0 20 * * *
-  #自动编译：每天早上6点
   schedule:
-    - cron: 0 22 * * *
+    - cron: 0 20 * * *
 
 env:
   REPO_URL: https://github.com/VIKINGYFY/immortalwrt.git
@@ -18,7 +15,7 @@ env:
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  # FIRMWARE_TAG: Arthur&Athena-Master
+  FIRMWARE_TAG: Arthur&Athena-Master
   TZ: Asia/Shanghai
 
 jobs:
@@ -26,25 +23,6 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-    - name: Free Disk Space(清理磁盘空间)
-      uses: endersonmenezes/free-disk-space@main
-      with:
-        testing: false
-        remove_android: true
-        remove_dotnet: true
-        remove_haskell: true
-        remove_tool_cache: true
-        remove_swap: true
-        remove_packages: "android* azure* clang* dotnet* firefox* ghc* golang* google* libclang* libgl1* lld* llvm* \
-          microsoft* mongodb* mono* mysql* nodejs* openjdk* php* postgresql* powershell* snap* temurin* yarn* zulu*"
-        remove_packages_one_command: true
-        remove_folders: "/etc/apt/sources.list.d* /etc/mono* /etc/mysql* /usr/include/linux/android* /usr/lib/llvm* /usr/lib/mono* \
-          /usr/local/lib/android* /usr/local/lib/node_modules* /usr/local/share/chromium* /usr/local/share/powershell* \
-          /usr/local/share/vcpkg/ports/azure* /usr/local/share/vcpkg/ports/google* /usr/local/share/vcpkg/ports/libpq/android* \
-          /usr/local/share/vcpkg/ports/llvm* /usr/local/share/vcpkg/ports/mysql* /usr/local/share/vcpkg/ports/snap* \
-          /usr/share/azure* /usr/share/dotnet* /usr/share/glade* /usr/share/miniconda* /usr/share/php* /usr/share/swift \
-          /var/lib/mysql* /var/log/azure*"
-  
     - name: Check Server Performance(检查服务器性能)
       run: |
         echo "警告⚠"
@@ -68,12 +46,12 @@ jobs:
         sudo -E apt-get -y purge azure-cli ghc* zulu* llvm* firefox google* dotnet* powershell openjdk* mongodb* moby* || true
         sudo -E apt-get -y update
         sudo -E apt-get -y install $(curl -fsSL is.gd/depends_ubuntu_2204)
-        sudo apt-get install -yqq clang-15
         sudo -E systemctl daemon-reload
+        sudo apt-get install -yqq clang-15
         sudo -E apt-get -y autoremove --purge
         sudo -E apt-get -y clean
         sudo timedatectl set-timezone "$TZ"
-        sudo bash -c 'bash <(curl -s https://build-scripts.immortalwrt.org/init_build_environment.sh)'
+        # sudo bash -c 'bash <(curl -s https://build-scripts.immortalwrt.org/init_build_environment.sh)'
 
     - name: Combine Disks(合并磁盘)
       uses: easimon/maximize-build-space@master
@@ -153,12 +131,6 @@ jobs:
         echo "status=success" >> $GITHUB_OUTPUT
         echo "DATE=$(date +"%Y-%m-%d %H:%M:%S")" >> $GITHUB_ENV
         echo "FILE_DATE=$(date +"%Y.%m.%d")" >> $GITHUB_ENV
-        # FIRMWARE_TAG: R$(date +"%Y.%m.%d")-Arthur&Athena-Master
-        # TAG_NAME="R${FILE_DATE}-Arthur&Athena-Master"
-        # TAG_NAME="R$(date +"%Y.%m.%d-%H%M%S")-Arthur-Athena-Master"
-        # TAG_NAME="R${FILE_DATE}-v${GITHUB_RUN_NUMBER}-ArthurAthenaMaster"
-        # echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
-        echo "FIRMWARE_TAG="R$(date +"%Y.%m.%d-%H%M%S")-Arthur-Athena-Master"" >> $GITHUB_ENV
 
     - name: Check Space Usage(检查空间使用情况)
       if: (!cancelled())
@@ -177,9 +149,9 @@ jobs:
         cd $OPENWRT_PATH/bin/targets/*/*
         cat sha256sums
         cp $OPENWRT_PATH/.config build.config
-        mv -f $OPENWRT_PATH/bin/packages/*/*/*.ipk packages
+        mv -f $OPENWRT_PATH/bin/packages/*/*/*.apk packages
         tar -zcf Packages.tar.gz packages
-        # rm -rf packages feeds.buildinfo version.buildinfo
+        rm -rf packages feeds.buildinfo version.buildinfo
         echo "FIRMWARE_PATH=$PWD" >> $GITHUB_ENV
 
     - name: Upload Firmware To Artifact(将固件上传到Artifact)
@@ -194,15 +166,14 @@ jobs:
       uses: ncipollo/release-action@v1
       with:
         name: R${{ env.DATE }} for ${{ env.FIRMWARE_TAG }}
-        # allowUpdates: true
-        allowUpdates: false
+        allowUpdates: true
         tag: ${{ env.FIRMWARE_TAG }}
         token: ${{ secrets.GITHUB_TOKEN }}
         artifacts: ${{ env.FIRMWARE_PATH }}/*
         body: |
           **This is OpenWrt Firmware for ${{ env.FIRMWARE_TAG }}** (master分支，欢迎下载测试！)
           ### 📒 固件信息(带WIFI)
-          - 这是带WIFI以及NSS的6.6内核固件，默认主题为Argon；该固件在ImmortalWrt的基础上，添加了额外的软件包cpufreq、ddns、ttyd、upnp、wol、samba4、vlmcsd、aria2、autoreboot、uhttpd、wifischedule、frps、frpc、diskman、hd-idle、banip、acme、arpbind、usb-printer、homeproxy、alist、mosdns，并添加了若干工具，具体详见Arthur&Athena.config。
+          - 这是带WIFI以及NSS的6.6内核固件，默认主题为Argon；该固件在ImmortalWrt的基础上，添加了额外的软件包cpufreq、ddns、ttyd、upnp、wol、samba4、vlmcsd、aria2、autoreboot、uhttpd、wifischedule、frps、frpc、diskman、hd-idle、banip、acme、arpbind、usb-printer、homeproxy、alist、adguardhome，并添加了若干工具，具体详见Arthur&Athena.config。
           - 💻 这是 ${{ env.FIRMWARE_TAG }} 平台使用的 OpenWrt 固件
           - ⚽ 固件源码: ${{ env.REPO_URL }}
           - 💝 源码分支: ${{ env.REPO_BRANCH }}
@@ -212,11 +183,3 @@ jobs:
           - 固件内核版本：**${{ env.VERSION_KERNEL }}**
           - 固件编译前最后一次➦[主源码](${{ env.REPO_URL }})更新记录
           - ${{ env.VERSION_INFO }}
-
-    - name: 自定义shell
-      run: |
-        find $OPENWRT_PATH -name ".kernelconfig"
-
-        echo '===============================================================我是分界线==========================================================================='
-
-        tree $OPENWRT_PATH
